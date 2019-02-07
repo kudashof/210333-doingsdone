@@ -129,9 +129,10 @@ $tasks_list = [
 
 					<table class="tasks">
                         <?php foreach ($tasks_list as $key => $value): ?>
-<!--                        вероятно тут тоже логика должна быть через ИЛИ?-->
-                            <?php if(!($value['complete']) && ($show_complete_tasks == 0)): ?>
-						<tr class="tasks__item task">
+                            <?php if(!($value['complete']) && ($show_complete_tasks == 0)) {
+                                continue;
+                            } ?>
+						<tr class="tasks__item task <?php if ($value['complete']) {echo "task--completed";} ?>">
 							<td class="task__select">
 								<label class="checkbox task__checkbox">
 									<input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1">
@@ -145,22 +146,6 @@ $tasks_list = [
 
 							<td class="task__date"><?=$value['date'];?></td>
 						</tr>
-<!--                                загвоздка была тут:) позже удалю лишнее-->
-<!--                        --><?php //elseif(($value['complete']) && ($show_complete_tasks == 1)):
-                               elseif($value['complete'] || $show_complete_tasks): ?>
-                            <tr class="tasks__item task task--completed">
-                                <td class="task__select">
-                                    <label class="checkbox task__checkbox">
-                                        <input class="checkbox__input visually-hidden" type="checkbox" checked>
-                                        <span class="checkbox__text"><?=$value['title'];?></span>
-                                    </label>
-                                </td>
-                                <td class="task__date"><?=$value['date'];?></td>
-
-                                <td class="task__controls">
-                                </td>
-                            </tr>
-                        <?php endif; ?>
                         <?php endforeach; ?>
 						<!--показывать следующий тег <tr/>, если переменная $show_complete_tasks равна единице-->
 					</table>
