@@ -129,7 +129,7 @@ $tasks_list = [
 
 					<table class="tasks">
                         <?php foreach ($tasks_list as $key => $value): ?>
-                            <?php if(!($value['complete']) && ($show_complete_tasks == 0)) {
+                            <?php if(($value['complete']) && ($show_complete_tasks == 0)) {
                                 continue;
                             } ?>
 						<tr class="tasks__item task <?php if ($value['complete']) {echo "task--completed";} ?>">
