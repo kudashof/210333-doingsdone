@@ -32,7 +32,7 @@ $tasks_list = [
     ],
     [
         'title' => 'Купить корм для кота',
-        'date' => '13.10.2019',
+        'date' => '16.02.2019',
         'category' => $category_list[3],
         'complete' => false
     ],

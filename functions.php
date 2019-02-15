@@ -35,14 +35,12 @@ function count_category($tasks_list, $project_name)
 // Разница в датах
 function time_diff($time_value)
 {
-    if ($time_value !== "Нет") {
+    if (strtotime($time_value)) {
+        $secs_in_day = 86400; // секунд в дне
         $current_date = time(); // текущее время
         $end_date = strtotime($time_value); //  дедлайн
-        return floor(($end_date - $current_date) / 3600); // разница между датами
+        $remain = $end_date - $current_date; // разница между датами
+        return ($remain <= $secs_in_day);
 
-    } else {
-        return $time_value;
     }
 }
-
-;
