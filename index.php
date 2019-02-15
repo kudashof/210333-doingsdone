@@ -4,6 +4,8 @@ error_reporting( E_ALL );
 require_once("functions.php");
 require_once("data.php");
 
+date_default_timezone_set('Europe/Moscow');
+
 $page_content = include_template('index.php', [
         'show_complete_tasks' => $show_complete_tasks,
         'tasks_list' => $tasks_list]);
