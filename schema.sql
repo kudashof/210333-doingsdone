@@ -38,6 +38,5 @@ CREATE TABLE users (
 
 CREATE INDEX u_name
   ON users (name);
-CREATE UNIQUE INDEX u_email
-  ON users (email);
+
 
