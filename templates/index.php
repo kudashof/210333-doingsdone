@@ -24,13 +24,13 @@
 
 <table class="tasks">
     <?php foreach ($tasks as $key => $value): ?>
-        <?php if (($value['complete']) && ($show_complete_tasks == 0)) {
+        <?php if (($value['status']) && ($show_complete_tasks == 0)) {
             continue;
         } ?>
-        <tr class="tasks__item task <?php if ($value['date_deadline']) {
+        <tr class="tasks__item task <?php if ($value['status']) {
             echo "task--completed";
         } else {
-            if (time_diff($value['date'])) {
+            if (time_diff($value['date_deadline'])) {
                 echo 'task--important';
             }
         }

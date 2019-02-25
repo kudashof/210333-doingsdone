@@ -46,8 +46,8 @@
                         <!--                            Список категорий-->
                         <?php foreach ($projects as $item): ?>
                             <li class="main-navigation__list-item">
-                                <a class="main-navigation__list-item-link" href="#"><?= $item[name]; ?></a>
-                                <span class="main-navigation__list-item-count"><?= count_category($tasks,$item[id]) ?></span>
+                                <a class="main-navigation__list-item-link" href="#"><?= $item['name']; ?></a>
+                                <span class="main-navigation__list-item-count"><?= count_category($tasks,$item['id']) ?></span>
                             </li>
                         <?php endforeach; ?>
                     </ul>

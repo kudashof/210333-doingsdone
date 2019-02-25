@@ -1,5 +1,5 @@
 <?php
-
+require_once('mysql_helper.php');
 function include_template($name, $data)
 {
     $name = 'templates/' . $name;
