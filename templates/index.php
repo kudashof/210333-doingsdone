@@ -23,11 +23,11 @@
 </div>
 
 <table class="tasks">
-    <?php foreach ($tasks_list as $key => $value): ?>
+    <?php foreach ($tasks as $key => $value): ?>
         <?php if (($value['complete']) && ($show_complete_tasks == 0)) {
             continue;
         } ?>
-        <tr class="tasks__item task <?php if ($value['complete']) {
+        <tr class="tasks__item task <?php if ($value['date_deadline']) {
             echo "task--completed";
         } else {
             if (time_diff($value['date'])) {
@@ -38,7 +38,7 @@
             <td class="task__select">
                 <label class="checkbox task__checkbox">
                     <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1">
-                    <span class="checkbox__text"><?= strip_tags($value['title']); ?></span>
+                    <span class="checkbox__text"><?= strip_tags($value['name']); ?></span>
                 </label>
             </td>
 
@@ -46,7 +46,7 @@
                 <a class="download-link" href="#">Home.psd</a>
             </td>
 
-            <td class="task__date"><?= strip_tags($value['date']); ?></td>
+            <td class="task__date"><?= strip_tags($value['date_deadline']); ?></td>
         </tr>
     <?php endforeach; ?>
     <!--показывать следующий тег <tr/>, если переменная $show_complete_tasks равна единице-->
