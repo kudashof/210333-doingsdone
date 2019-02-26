@@ -15,8 +15,15 @@ if ($con == false) {
     $tasks = db_fetch_data($link, $sql_task, $id);
 }
 
+$sql = 'SELECT project_id FROM tasks WHERE project_id = ? LIMIT 1';
+if (isset($_GET["projectID"])) {
+    $count_id = db_fetch_data($link, $sql, $_GET["projectID"]);
+    if ($count_id==false) {
+        http_response_code(404);
+    }
+}
+
 $page_content = include_template('index.php', [
-    'link' => $link,
     'show_complete_tasks' => $show_complete_tasks,
     'tasks' => $tasks
 ]);

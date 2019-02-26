@@ -23,20 +23,12 @@
 </div>
 
 <table class="tasks">
-    <?php if (isset($_GET['project_name'])): ?>
-        <?php $count_id = db_fetch_data($link, 'SELECT COUNT(*) AS count FROM tasks WHERE project_id = ?',
-            $_GET['project_name']);
-        if ($count_id[0]['count'] < 1): ?>
-            <p>Ошибка 404</p>
-            <?php http_response_code(404); ?>
-        <?php endif; ?>
-    <?php endif; ?>
     <?php if (http_response_code() === 200): ?>
         <?php foreach ($tasks as $key => $value): ?>
             <?php if (($value['status']) && ($show_complete_tasks == 0)) {
                 continue;
             } ?>
-            <?php if (!isset($_GET['project_name']) || $_GET['project_name'] == $value['project_id']): ?>
+            <?php if (!isset($_GET['projectID']) || $_GET['projectID'] == $value['project_id']): ?>
                 <tr class="tasks__item task <?php if ($value['status']) {
                     echo "task--completed";
                 } else {
@@ -60,6 +52,8 @@
                 </tr>
             <?php endif; ?>
         <?php endforeach; ?>
+    <?php else: ?>
+        <p>Ошибка 404</p>
     <?php endif; ?>
     <!--показывать следующий тег <tr/>, если переменная $show_complete_tasks равна единице-->
 </table>
