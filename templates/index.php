@@ -23,31 +23,43 @@
 </div>
 
 <table class="tasks">
-    <?php foreach ($tasks as $key => $value): ?>
-        <?php if (($value['status']) && ($show_complete_tasks == 0)) {
-            continue;
-        } ?>
-        <tr class="tasks__item task <?php if ($value['status']) {
-            echo "task--completed";
-        } else {
-            if (time_diff($value['date_deadline'])) {
-                echo 'task--important';
-            }
-        }
-        ?>">
-            <td class="task__select">
-                <label class="checkbox task__checkbox">
-                    <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1">
-                    <span class="checkbox__text"><?= strip_tags($value['name']); ?></span>
-                </label>
-            </td>
+    <?php if (isset($_GET['project_name'])): ?>
+        <?php $count_id = db_fetch_data($link, 'SELECT COUNT(*) AS count FROM tasks WHERE project_id = ?',
+            $_GET['project_name']);
+        if ($count_id[0]['count'] < 1): ?>
+            <p>Ошибка 404</p>
+            <?php http_response_code(404); ?>
+        <?php endif; ?>
+    <?php endif; ?>
+    <?php if (http_response_code() === 200): ?>
+        <?php foreach ($tasks as $key => $value): ?>
+            <?php if (($value['status']) && ($show_complete_tasks == 0)) {
+                continue;
+            } ?>
+            <?php if (!isset($_GET['project_name']) || $_GET['project_name'] == $value['project_id']): ?>
+                <tr class="tasks__item task <?php if ($value['status']) {
+                    echo "task--completed";
+                } else {
+                    if (time_diff($value['date_deadline'])) {
+                        echo 'task--important';
+                    }
+                }
+                ?>">
+                    <td class="task__select">
+                        <label class="checkbox task__checkbox">
+                            <input class="checkbox__input visually-hidden task__checkbox" type="checkbox" value="1">
+                            <span class="checkbox__text"><?= strip_tags($value['name']); ?></span>
+                        </label>
+                    </td>
 
-            <td class="task__file">
-                <a class="download-link" href="#">Home.psd</a>
-            </td>
+                    <td class="task__file">
+                        <a class="download-link" href="#">Home.psd</a>
+                    </td>
 
-            <td class="task__date"><?= strip_tags($value['date_deadline']); ?></td>
-        </tr>
-    <?php endforeach; ?>
+                    <td class="task__date"><?= strip_tags($value['date_deadline']); ?></td>
+                </tr>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    <?php endif; ?>
     <!--показывать следующий тег <tr/>, если переменная $show_complete_tasks равна единице-->
 </table>

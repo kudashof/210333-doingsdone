@@ -16,6 +16,7 @@ if ($con == false) {
 }
 
 $page_content = include_template('index.php', [
+    'link' => $link,
     'show_complete_tasks' => $show_complete_tasks,
     'tasks' => $tasks
 ]);
