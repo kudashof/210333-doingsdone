@@ -21,11 +21,11 @@ function include_template($name, $data)
 // показывать или нет выполненные задачи
 $show_complete_tasks = rand(0, 1);
 
-function count_category($tasks, $project_name)
+function count_category($tasks, $projectID)
 {
     $count = 0;
     foreach ($tasks as $item) {
-        if ($item['project_id'] == $project_name) {
+        if ($item['project_id'] == $projectID) {
             $count++;
         }
     }

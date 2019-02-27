@@ -28,7 +28,7 @@ if (isset($_GET["projectID"])) {
     $is_project = 'SELECT id FROM projects WHERE id = ? LIMIT 1';
     if ($is_project) {
         // Если есть, получить задачи с отбором по id проекта, для отбора использовать выше указанный параметр из $_GET
-        $sql = 'SELECT project_id FROM tasks WHERE project_id = ? LIMIT 1';
+        $sql = 'SELECT * FROM tasks WHERE project_id = ? ';
         // Все задачи по проекту положить в переменную $tasks
         $tasks = db_fetch_data($link, $sql, $_GET['projectID']);
     } else {
