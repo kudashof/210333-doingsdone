@@ -44,7 +44,7 @@ function time_diff($time_value)
 
     }
 }
-
+//Подготовленное выражение
 function db_fetch_data($link, $sql, $data = [])
 {
     $stmt = db_get_prepare_stmt($link, $sql, [$data]);

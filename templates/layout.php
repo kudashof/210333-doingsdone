@@ -20,7 +20,7 @@
             </a>
 
             <div class="main-header__side">
-                <a class="main-header__side-item button button--plus open-modal" href="pages/form-task.html">Добавить
+                <a class="main-header__side-item button button--plus open-modal" href="add.php">Добавить
                     задачу</a>
 
                 <div class="main-header__side-item user-menu">
@@ -53,7 +53,7 @@
                     </ul>
                 </nav>
 
-                <a class="button button--transparent button--plus content__side-button" href="pages/form-project.html"
+                <a class="button button--transparent button--plus content__side-button" href="add.php"
                    target="project_add">Добавить проект</a>
             </section>
 

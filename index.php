@@ -14,15 +14,6 @@ if ($con == false) {
     $projects = db_fetch_data($link, $sql_project, $id);
     $tasks = db_fetch_data($link, $sql_task, $id);
 }
-//
-//$sql = 'SELECT tasks.name, tasks.date_deadline, tasks.status FROM tasks WHERE tasks.user_id = ? AND tasks.project_id = ?';
-////$sql = 'SELECT project_id FROM tasks WHERE project_id = ? LIMIT 1';
-//if (isset($_GET['projectID'])) {
-//    $count_id = db_fetch_data($link, $sql, $_GET['projectID']);
-//    if ($count_id == false) {
-//        http_response_code(404);
-//    }
-//}
 
 if (isset($_GET["projectID"])) {
     $sql = 'SELECT id FROM projects WHERE id = ? LIMIT 1';
