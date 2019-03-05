@@ -45,7 +45,7 @@
                     </td>
 
                     <td class="task__file">
-                        <a class="download-link" href="#"><?=$value["file"];?>"><?=$value["file"];?></a>
+                        <a class="download-link" href="#"><?=$value["file"];?><?=$value["file"];?></a>
                     </td>
 
                     <td class="task__date"><?= isset($value['date_deadline']) ? strip_tags($value['date_deadline']) : ""; ?></td>

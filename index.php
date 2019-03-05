@@ -19,12 +19,9 @@ if (isset($_GET["projectID"])) {
     $sql = 'SELECT id FROM projects WHERE id = ? LIMIT 1';
     $is_project = db_fetch_data($link, $sql, $_GET['projectID']);
     if ($is_project) {
-        // Если есть, получить задачи с отбором по id проекта, для отбора использовать выше указанный параметр из $_GET
         $sql = 'SELECT * FROM tasks WHERE project_id = ? ';
-        // Все задачи по проекту положить в переменную $tasks
         $tasks = db_fetch_data($link, $sql, $_GET['projectID']);
     } else {
-        // Если такого проекта нет, то 404
         http_response_code(404);
     }
 }

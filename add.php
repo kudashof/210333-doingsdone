@@ -1,7 +1,9 @@
 <?php
 require_once 'init.php';
-$page_content = include_template('add.php',
-    ['projects' => $projects]);
+require_once 'functions.php';
+$user_id = 1;
+$projects = get_projects($link, $user_id);
+$tasks = get_tasks($link, $user_id);
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $task = $_POST;
@@ -36,6 +38,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
+$page_content = include_template('add.php',
+    [
+        'projects' => $projects,
+        'tasks' => $tasks,
+        'errors' => $errors
+    ]);
 $layout_content = include_template('layout.php', [
     'title' => 'Дела в порядке',
     'page_content' => $page_content,
