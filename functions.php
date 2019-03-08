@@ -57,14 +57,14 @@ function db_fetch_data($link, $sql, $data = [])
     }
 }
 function get_projects($link, $userId){
-    $sql = 'SELECT name, id FROM project WHERE user_id = ?';
+    $sql = 'SELECT name, id FROM projects WHERE user_id = ?';
     $stmt = db_get_prepare_stmt($link, $sql, [$userId]);
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);
     return mysqli_fetch_all($result, MYSQLI_ASSOC);
 }
 function get_tasks($link, $userId) {
-    $sql = 'SELECT * FROM tasks INNER JOIN projects ON projects.id = tasks.project_id WHERE user_id = ?';
+    $sql = 'SELECT * FROM tasks WHERE user_id = ?';
     $stmt = db_get_prepare_stmt($link, $sql, [$userId]);
     mysqli_stmt_execute($stmt);
     $result = mysqli_stmt_get_result($stmt);

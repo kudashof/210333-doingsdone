@@ -4,10 +4,11 @@ require_once 'functions.php';
 $user_id = 1;
 $projects = get_projects($link, $user_id);
 $tasks = get_tasks($link, $user_id);
+$task = $_POST;
+$errors = [];
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    $task = $_POST;
-    $errors = [];
+
     if (empty($task['name'])) {
         $errors['name'] = 'Поле не должно быть пустым';
     }
@@ -38,10 +39,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-$page_content = include_template('add.php',
+$page_content = include_template('form_task.php',
     [
         'projects' => $projects,
-        'tasks' => $tasks,
         'errors' => $errors
     ]);
 $layout_content = include_template('layout.php', [
